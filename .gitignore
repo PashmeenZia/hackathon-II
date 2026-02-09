@@ -1,0 +1,16 @@
+# Python virtual environment
+backend/venv/
+venv/
+.env
+
+# Node.js
+node_modules/
+
+# Build folders
+dist/
+build/
+.next/
+
+# OS junk
+Thumbs.db
+.DS_Store

@@ -208,3 +208,12 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.11 + FastAPI, SQLModel, Neon PostgreSQL driver (001-task-management)
+- Neon Serverless PostgreSQL database (001-task-management)
+- TypeScript 5.0+, JavaScript ES2022 + Next.js 14+ (App Router), React 18+, Tailwind CSS, Axios, Better Auth, Zod (003-frontend-ui-integration)
+- Browser localStorage/httpOnly cookies for JWT, IndexedDB for offline cache (003-frontend-ui-integration)
+
+## Recent Changes
+- 001-task-management: Added Python 3.11 + FastAPI, SQLModel, Neon PostgreSQL driver
