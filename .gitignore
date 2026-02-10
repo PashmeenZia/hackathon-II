@@ -14,3 +14,5 @@ build/
 # OS junk
 Thumbs.db
 .DS_Store
+.vercel
+.env*.local
