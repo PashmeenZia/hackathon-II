@@ -30,8 +30,10 @@ class RegisterRequest(BaseModel):
 
 
 class RegisterResponse(BaseModel):
-    user_id: str
-    email: str
+    access_token: str
+    token_type: str = "bearer"
+    expires_in: int
+    user: Dict[str, Any]
 
 
 @router.post("/auth/login", response_model=LoginResponse)
@@ -87,7 +89,7 @@ async def register(
     db: Session = Depends(get_db)
 ):
     """
-    Register a new user
+    Register a new user and return access token
     """
     # Check if user already exists
     existing_user = db.query(User).filter(User.email == register_data.email).first()
@@ -108,9 +110,23 @@ async def register(
     db.commit()
     db.refresh(user)
 
+    # Create access token for the newly registered user
+    token_data = {
+        "sub": user.id,
+        "email": user.email,
+        "user_id": user.id
+    }
+    access_token = create_access_token(data=token_data)
+    expires_in = 30 * 60  # 30 minutes in seconds
+
     return RegisterResponse(
-        user_id=user.id,
-        email=user.email
+        access_token=access_token,
+        token_type="bearer",
+        expires_in=expires_in,
+        user={
+            "id": user.id,
+            "email": user.email
+        }
     )
 
 
